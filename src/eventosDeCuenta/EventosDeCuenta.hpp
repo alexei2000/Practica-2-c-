@@ -78,11 +78,11 @@ void EventosDeCuentas::generateCsv(){
 void EventosDeCuentas::showFirstTen(){
 
     long count=0;
-    multimap<long,string> eventsAccounts;
+    multimap<long,string, greater<long>> eventsAccounts;
 
     for (auto const &account: colection){
         for(auto const &eventType: account.second){
-            count-=eventType.second;
+            count+=eventType.second;
         }
         eventsAccounts.insert(pair <long,string>(count,account.first));
         count=0;
@@ -90,7 +90,7 @@ void EventosDeCuentas::showFirstTen(){
 
     int i=0;
     for(auto const &it : eventsAccounts){
-        cout<<it.second<<": "<<it.first*(-1)<<endl;
+        cout<<it.second<<": "<<it.first<<endl;
         i++;
         if(i>=10){
             break;
@@ -101,7 +101,7 @@ void EventosDeCuentas::showFirstTen(){
 
 void EventosDeCuentas::showEventsAndTypes(){
     map <string,long> totalEvents;
-    multimap <long, string> totalEventsOrganized;
+    multimap <long, string, greater<long>> totalEventsOrganized;
 
     for (auto const &account: colection){
         for(auto const &eventType: account.second){
@@ -110,11 +110,11 @@ void EventosDeCuentas::showEventsAndTypes(){
     }
 
     for(auto const &event: totalEvents){
-        totalEventsOrganized.insert(pair <long,string>(-event.second,event.first));
+        totalEventsOrganized.insert(pair <long,string>(event.second,event.first));
     }
 
     for(auto const &it : totalEventsOrganized){
-        cout<<it.second<<": "<<it.first*(-1)<<endl;
+        cout<<it.second<<": "<<it.first<<endl;
     }
 
 

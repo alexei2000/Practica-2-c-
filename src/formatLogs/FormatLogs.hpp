@@ -65,7 +65,7 @@ void FormatLogs::readFileAndInsert(string url, EventosDeCuentas &events, string 
         fe.close();
     }
 
-    events.setNumLogs(numLine);
+    events.setNumLogs(--numLine);
 
 }
 
